@@ -40,8 +40,8 @@ public class PowerUps : MonoBehaviour
     public GameObject manager;
     public GameMaster GM;
     public GameObject Player;
-    public PlayerDash PDash;
     public PlayerMovement pm;
+    public PlayerDash PDash;
     public DoubleJump doublej;
 
     [Header("Slot Assignment")]
@@ -52,6 +52,7 @@ public class PowerUps : MonoBehaviour
     {
         manager = GameObject.Find("GameMaster");
         GM = manager.GetComponent<GameMaster>();
+
         Player = GameObject.Find("Player");
         pm = Player.GetComponent<PlayerMovement>();
         doublej = Player.GetComponent<DoubleJump>();
@@ -104,6 +105,8 @@ public class PowerUps : MonoBehaviour
             {
                 GM.dashSlotKey = assignedSlotKey;
             }
+
+
         }
 
         PDash.enabled = true;

@@ -31291,7 +31291,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1074144524
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -66033,6 +66033,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GM: {fileID: 1401575777}
   allowInvoke: 1
+  upgradeRequired: 0
+  upgrade1: {fileID: 0}
+  upgrade2: {fileID: 0}
+  upgrade3: {fileID: 0}
 --- !u!1 &1694615326
 GameObject:
   m_ObjectHideFlags: 0
@@ -67870,6 +67874,7 @@ GameObject:
   - component: {fileID: 553243737345870639}
   - component: {fileID: 1946149477}
   - component: {fileID: 1946149475}
+  - component: {fileID: 553243737345870646}
   - component: {fileID: 1946149481}
   - component: {fileID: 1946149476}
   - component: {fileID: 553243737345870636}
@@ -68246,17 +68251,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   randomize: 1
-  dashUpgrade: 1
+  dashUpgrade: 0
   doubleJumpUpgrade: 0
   highjumpUpgrade: 0
   sprintUpgrade: 0
-  newJumpValue: 4
+  newJumpValue: 2
   newSprintValue: 3
   manager: {fileID: 0}
   GM: {fileID: 0}
   Player: {fileID: 0}
-  PDash: {fileID: 0}
   pm: {fileID: 0}
+  PDash: {fileID: 0}
   doublej: {fileID: 0}
   assignedSlotKey: 0
 --- !u!23 &1959916856
@@ -68640,8 +68645,11 @@ MonoBehaviour:
   player: {fileID: 0}
   power: {fileID: 0}
   slot1: {fileID: 0}
+  slot1Script: {fileID: 0}
   slot2: {fileID: 0}
+  slot2Script: {fileID: 0}
   slot3: {fileID: 0}
+  slot3Script: {fileID: 0}
   slot1Key: 113
   slot2Key: 102
   slot3Key: 118
@@ -69865,6 +69873,28 @@ MonoBehaviour:
   allowInvoke: 1
   equipWaitTime: 0.5
   orbCooldown: 5
+--- !u!114 &553243737345870646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1946149471}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44c800825f8b91a4c8a045c1efcadca6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 0}
+  pm: {fileID: 0}
+  floating: 0
+  floatUpwardForce: 0
+  floatDuration: 3
+  floatTime: 0
+  canFloat: 0
+  floatCooldown: 2
+  floatCoolTime: 0
+  floatKey: 102
 --- !u!65 &7280977185194109666
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -69953,11 +69983,11 @@ SceneRoots:
   - {fileID: 1338591702}
   - {fileID: 731657389}
   - {fileID: 964650658}
+  - {fileID: 1541529647}
+  - {fileID: 753121775}
   - {fileID: 765950628}
   - {fileID: 1401575778}
   - {fileID: 1859086592}
-  - {fileID: 1541529647}
-  - {fileID: 753121775}
   - {fileID: 267324413}
   - {fileID: 1549605661}
   - {fileID: 963393533}

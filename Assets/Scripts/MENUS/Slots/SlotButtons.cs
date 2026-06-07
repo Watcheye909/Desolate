@@ -10,8 +10,13 @@ public class SlotButtons : MonoBehaviour
     public PowerUps power;
 
     public GameObject slot1;
+    public SlotScript slot1Script;
+
     public GameObject slot2;
+    public SlotScript slot2Script;
+
     public GameObject slot3;
+    public SlotScript slot3Script;
 
     [Header("Slot Keybindings")]
     public KeyCode slot1Key;
@@ -20,7 +25,14 @@ public class SlotButtons : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        slot1 = GameObject.Find("SlotButton(1)");
+        slot2 = GameObject.Find("SlotButton(2)");
+        slot3 = GameObject.Find("SlotButton(3)");
+
+        slot1Script = GameObject.Find("SlotButton(1)").GetComponent<SlotScript>();
+        slot2Script = GameObject.Find("SlotButton(2)").GetComponent<SlotScript>();
+        slot3Script = GameObject.Find("SlotButton(3)").GetComponent<SlotScript>();
+
     }
 
     // Update is called once per frame
@@ -32,6 +44,8 @@ public class SlotButtons : MonoBehaviour
     {
         Debug.Log("Slot 1 Selected");
         AssignSlotKeyToPowerup(slot1Key);
+
+        //slot1Script.empty = false;
     }
     public void Slot2Select()
     {
