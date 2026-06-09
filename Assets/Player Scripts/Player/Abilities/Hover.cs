@@ -102,7 +102,7 @@ public class Hover : MonoBehaviour
 
         if(rb.velocity.y > 0 && rb.velocity.y < 2)
         {
-            rb.mass = 0.15f;
+            //rb.mass = 0.15f;
             //rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
             //rb.AddForce(transform.up * floatUpwardForce, ForceMode.Impulse);
         }

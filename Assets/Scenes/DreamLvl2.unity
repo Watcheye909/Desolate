@@ -20170,6 +20170,7 @@ GameObject:
   - component: {fileID: 867458028}
   - component: {fileID: 867458027}
   - component: {fileID: 867458026}
+  - component: {fileID: 867458029}
   m_Layer: 5
   m_Name: SlotButton(1)
   m_TagString: Untagged
@@ -20303,6 +20304,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 867458024}
   m_CullTransparentMesh: 1
+--- !u!114 &867458029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 867458024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4df718aa262d554cb5e51ec948b458f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  empty: 1
+  state: 0
 --- !u!1 &879766712
 GameObject:
   m_ObjectHideFlags: 0
@@ -49169,6 +49184,7 @@ GameObject:
   - component: {fileID: 1503074347}
   - component: {fileID: 1503074346}
   - component: {fileID: 1503074345}
+  - component: {fileID: 1503074348}
   m_Layer: 5
   m_Name: SlotButton(2)
   m_TagString: Untagged
@@ -49302,6 +49318,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1503074343}
   m_CullTransparentMesh: 1
+--- !u!114 &1503074348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1503074343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4df718aa262d554cb5e51ec948b458f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  empty: 1
+  state: 0
 --- !u!1001 &1509859076
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -66049,6 +66079,7 @@ GameObject:
   - component: {fileID: 1694615330}
   - component: {fileID: 1694615329}
   - component: {fileID: 1694615328}
+  - component: {fileID: 1694615331}
   m_Layer: 5
   m_Name: SlotButton(3)
   m_TagString: Untagged
@@ -66182,6 +66213,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1694615326}
   m_CullTransparentMesh: 1
+--- !u!114 &1694615331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1694615326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4df718aa262d554cb5e51ec948b458f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  empty: 1
+  state: 0
 --- !u!1 &1697202649 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 733e1cb4b79d7264ca3b0399254ce2f2, type: 3}
@@ -67390,7 +67435,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -96.56, z: -1.4999999}
-  m_LocalScale: {x: 300, y: 100, z: 300}
+  m_LocalScale: {x: 500, y: 100, z: 500}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 23073352}
@@ -68022,6 +68067,7 @@ MonoBehaviour:
   wallJumpSideForce: 14
   maxWallRunTime: 2.5
   wallRunEndTime: 0
+  wallJumping: 0
   wallJumpKey: 32
   wallCheckDistance: 0.4
   minJumpHeight: 1.7
@@ -68250,6 +68296,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae5bddd727fb06b4bbffd9b947623882, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  abilityType: 0
   randomize: 1
   dashUpgrade: 0
   doubleJumpUpgrade: 0
@@ -68643,7 +68690,7 @@ MonoBehaviour:
   um: {fileID: 0}
   gm: {fileID: 0}
   player: {fileID: 0}
-  power: {fileID: 0}
+  pendingPower: {fileID: 0}
   slot1: {fileID: 0}
   slot1Script: {fileID: 0}
   slot2: {fileID: 0}

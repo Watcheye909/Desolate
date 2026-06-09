@@ -4,12 +4,16 @@ using UnityEngine;
 
 public class SlotScript : MonoBehaviour
 {
-    public bool empty;
-    public slotState state;
+    public bool empty = true;
+    public slotState state = slotState.None;
 
     public enum slotState
     {
+        None,
         dash,
+        doubleJump,
+        highJump,
+        sprintBoost,
         groundPound,
         peachFloat,
         slowMotion,
@@ -17,20 +21,15 @@ public class SlotScript : MonoBehaviour
         platform,
         speedRing
     }
-    // Start is called before the first frame update
-    void Start()
+
+    public void AssignState(slotState newState)
     {
-        
+        state = newState;
+        empty = newState == slotState.None;
     }
 
-    void StateHandler()
+    public void ClearSlot()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        AssignState(slotState.None);
     }
 }

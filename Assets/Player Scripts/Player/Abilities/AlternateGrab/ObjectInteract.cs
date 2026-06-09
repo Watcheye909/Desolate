@@ -65,7 +65,14 @@ public class ObjectInteract : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (CurrentObject != null && !CurrentObject.gameObject.activeInHierarchy)
+        {
+            CurrentObject = null;
+            isGrabbing = false;
+            animator.SetBool("Grabbed", false);
+            animator.SetBool("Grabbable", false);
+        }
+
         if(isGrabbing)
             weapon.SetActive(false);
         else
@@ -159,40 +166,28 @@ public class ObjectInteract : MonoBehaviour
                 
                 
                 power = CurrentObject.GetComponent<PowerUps>();
-                SB.power = power;
+                SB.SetPendingPower(power);
                 
                 if (power == null)
                     return;
 
-
-                if (power.dashUpgrade)
+                if (power.dashUpgrade || power.doubleJumpUpgrade)
                 {
                     UM.MenuOpen();
-                    power.gainDash();
-                    CurrentObject = null;
-                    animator.SetBool("Grabbed", false);
+                    // The upgrade will be applied once the player selects a slot.
                 }
-                if(power.highjumpUpgrade)
+                else if (power.highjumpUpgrade)
                 {
                     power.gainHighJump();
                     CurrentObject = null;
                     animator.SetBool("Grabbed", false);
                 }
-
-                if(power.sprintUpgrade)
+                else if (power.sprintUpgrade)
                 {
                     power.gainSpeedBoost();
                     CurrentObject = null;
                     animator.SetBool("Grabbed", false);
                 }
-
-                if(power.doubleJumpUpgrade)
-                {
-                    power.gainDoubleJump();
-                    CurrentObject = null;
-                    animator.SetBool("Grabbed", false);
-                }
-
 
                 //[OUTLINE]
                 OL = CurrentObject.GetComponent<Outline>();

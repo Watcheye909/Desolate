@@ -16,6 +16,10 @@ public class WallRunning : MonoBehaviour
     public float maxWallRunTime;
     private float wallRunTimer;
     public float wallRunEndTime; //1/3 of the wall run time
+
+    
+    
+    public bool wallJumping;
     
 
     [Header("Input")]
@@ -71,6 +75,9 @@ public class WallRunning : MonoBehaviour
         
         if (pm.wallrunning)
             WallRunningMovement();
+
+        if(wallJumping)
+            WallJumpAction();
         
     }
     
@@ -216,6 +223,12 @@ public class WallRunning : MonoBehaviour
         exitingWall = true;
         exitWallTimer = exitWallTime;
 
+        rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+        
+        wallJumping = true;
+        Debug.Log("walljump activated");
+
+        /*
         //wall jumping
         Vector3 wallNormal = wallRight ? rightWallHit.normal : leftWallHit.normal;
 
@@ -225,6 +238,22 @@ public class WallRunning : MonoBehaviour
         //add the jump force
         rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
         rb.AddForce(forceToApply, ForceMode.Impulse);
+        */
+    }
+
+    void WallJumpAction()
+    {
+        //wall jumping
+        Vector3 wallNormal = wallRight ? rightWallHit.normal : leftWallHit.normal;
+
+        Vector3 horizontalNormal = new Vector3(wallNormal.x, 0f, wallNormal.z).normalized;
+        Vector3 forceToApply = transform.up * wallJumpUpForce + horizontalNormal * wallJumpSideForce;
+
+        //add the jump force
+        rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+        rb.AddForce(forceToApply, ForceMode.Impulse);
+
+        wallJumping = false;
     }
 
     void OnDrawGizmosSelected()

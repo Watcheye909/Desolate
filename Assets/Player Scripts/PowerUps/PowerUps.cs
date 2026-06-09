@@ -4,22 +4,26 @@ using UnityEngine;
 
 public class PowerUps : MonoBehaviour
 {
+    public enum AbilityType
+    {
+        None,
+        Dash,
+        DoubleJump,
+        HighJump,
+        SprintBoost
+    }
 
+    public AbilityType abilityType = AbilityType.None;
 
-
-
-        /*
-        Upgrade process:
-        1. Player picks up an upgrade item (not in this script, but you would have some sort of prompt to have the player choose which slot to put the upgrade in).
-        2. The player presses the corresponding key (Q, F, or V) to select the upgrade slot they want to use.
-        3. The upgrade is applied to the player ().
-        */ 
-
+    /*
+    Upgrade process:
+    1. Player picks up an upgrade item (not in this script, but you would have some sort of prompt to have the player choose which slot to put the upgrade in).
+    2. The player presses the corresponding key (Q, F, or V) to select the upgrade slot they want to use.
+    3. The upgrade is applied to the player ().
+    */ 
 
     [Header("Settings")]
     public bool randomize;
-
-
 
     [Header("Slot Abilities")]
     public bool dashUpgrade;
@@ -105,18 +109,28 @@ public class PowerUps : MonoBehaviour
             {
                 GM.dashSlotKey = assignedSlotKey;
             }
-
-
         }
 
-        PDash.enabled = true;
-        GM.gotDash = true;
+        if (PDash != null)
+        {
+            PDash.enabled = true;
+        }
+
+        if (GM != null)
+        {
+            GM.gotDash = true;
+        }
+
         this.gameObject.SetActive(false);
     }
 
     public void gainDoubleJump()
     {
-        doublej.enabled = true;
+        if (doublej != null)
+        {
+            doublej.enabled = true;
+        }
+
         this.gameObject.SetActive(false);
     }
 
@@ -132,6 +146,45 @@ public class PowerUps : MonoBehaviour
             {
                 GM.dashSlotKey = key;
             }
+        }
+    }
+
+    public AbilityType GetAbilityType()
+    {
+        if (abilityType != AbilityType.None)
+            return abilityType;
+
+        if (dashUpgrade)
+            return AbilityType.Dash;
+        if (doubleJumpUpgrade)
+            return AbilityType.DoubleJump;
+        if (highjumpUpgrade)
+            return AbilityType.HighJump;
+        if (sprintUpgrade)
+            return AbilityType.SprintBoost;
+
+        return AbilityType.None;
+    }
+
+    public void ApplyPendingUpgrade()
+    {
+        switch (GetAbilityType())
+        {
+            case AbilityType.Dash:
+                gainDash();
+                break;
+            case AbilityType.DoubleJump:
+                gainDoubleJump();
+                break;
+            case AbilityType.HighJump:
+                gainHighJump();
+                break;
+            case AbilityType.SprintBoost:
+                gainSpeedBoost();
+                break;
+            default:
+                Debug.LogWarning("PowerUps: No pending upgrade to apply.");
+                break;
         }
     }
 
