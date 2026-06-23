@@ -113,6 +113,8 @@ public class ObjectInteract : MonoBehaviour
         {
             if(CurrentObject == null)
                 return;
+            
+            
 
             if(CurrentObject.gameObject.CompareTag("SpiritOrb"))
             {
@@ -168,21 +170,31 @@ public class ObjectInteract : MonoBehaviour
                 power = CurrentObject.GetComponent<PowerUps>();
                 SB.SetPendingPower(power);
                 
-                if (power == null)
+                if(power == null)
                     return;
 
-                if (power.dashUpgrade || power.doubleJumpUpgrade)
+                if(power.dashUpgrade || power.floatUpgrade)
                 {
                     UM.MenuOpen();
                     // The upgrade will be applied once the player selects a slot.
                 }
-                else if (power.highjumpUpgrade)
+                
+                else if(power.doubleJumpUpgrade)
+                {
+                    power.gainDoubleJump();
+                    CurrentObject = null;
+                    animator.SetBool("Grabbed", false);
+                }
+
+
+
+                else if(power.highjumpUpgrade)
                 {
                     power.gainHighJump();
                     CurrentObject = null;
                     animator.SetBool("Grabbed", false);
                 }
-                else if (power.sprintUpgrade)
+                else if(power.sprintUpgrade)
                 {
                     power.gainSpeedBoost();
                     CurrentObject = null;
@@ -191,7 +203,8 @@ public class ObjectInteract : MonoBehaviour
 
                 //[OUTLINE]
                 OL = CurrentObject.GetComponent<Outline>();
-                OL.eraseRenderer = true;
+                if(OL != null)
+                    OL.eraseRenderer = true;
                 //weapon.SetActive(false);
             }
         }

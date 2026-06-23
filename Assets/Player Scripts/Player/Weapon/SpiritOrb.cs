@@ -4,26 +4,32 @@ using UnityEngine;
 
 public class SpiritOrb : MonoBehaviour
 {
+    [Header("References")]
     public Animator animator;
     public GameObject playerHitMark;
     public GameObject mainPlayer;
-    public Rigidbody rb;
-    public ProjectileGun PG;
-    public EnemyAI EA;
-
-    public GameObject impactEffect;
     public Transform player;
+    public Rigidbody rb;
+    public PlayerCamera cam;
+    //public ProjectileGun PG;
+    //public EnemyAI EA;
 
-    public bool isThrown;
 
     [Tooltip("Optional override. If empty, SpiritOrb will try to find the player by tag 'Player'.")]
     public string playerTag = "Player";
 
+    [Header("Object Properties")]
+    public GameObject impactEffect;
+    public bool isThrown;
+
+
     //EXPLOSION PROPERTIES
+    [Header("Explosion Properties")]
     public bool isExplosive;
     public float explosionRadius;
     public float explosionForce;
     public int explosionDamage;
+    public float camShakeAmount;
     public GameObject explosionEffect;
 
 
@@ -50,6 +56,8 @@ public class SpiritOrb : MonoBehaviour
         {
             Debug.LogWarning("SpiritOrb: Could not find player object. Assign mainPlayer in the inspector or tag it as 'Player'.");
         }
+
+        cam = GameObject.Find("Main Camera").GetComponent<PlayerCamera>();
 
         isExplosive = false;
     }
@@ -102,11 +110,14 @@ public class SpiritOrb : MonoBehaviour
 
     void Update()
     {
+        /*
         if (hurtEnemy)
             animator.SetBool("Hit", true);
 
         if (!hurtEnemy)
             animator.SetBool("Hit", false);
+        */
+
 
         if(Input.GetKeyDown(KeyCode.Mouse1) && isThrown)
         {
@@ -130,9 +141,12 @@ public class SpiritOrb : MonoBehaviour
         {
             Collider hitCollider = objectsInRange[i];
             Rigidbody hitRb = hitCollider.attachedRigidbody;
+            Rigidbody playerRB = mainPlayer.GetComponent<Rigidbody>();
+
 
             if (hitRb == null || hitRb == selfRb || hitCollider.isTrigger)
                 continue;
+            
 
             /*
             Vector3 closestPoint = hitCollider.ClosestPoint(transform.position);
@@ -148,6 +162,19 @@ public class SpiritOrb : MonoBehaviour
             hitRb.AddForceAtPosition((forceDirection + Vector3.up) * explosionForce * distanceFactor,
                 closestPoint, ForceMode.Impulse);
             */
+            
+            if(hitRb != playerRB)
+            {
+                cam.DoShake(camShakeAmount/3, 0.5f);
+                Debug.Log("small shake");
+            }
+
+            else
+            {
+                cam.DoShake(camShakeAmount, 0.5f);
+                Debug.Log("full shake");
+            }
+            
             
             // custom explosionForce
             Vector3 objectPos = hitCollider.transform.position;

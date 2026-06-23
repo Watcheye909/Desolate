@@ -6,6 +6,7 @@ public class LevelManagement : MonoBehaviour
 {
     public GameObject Manager;
     public GameMaster GM;
+    public AbilityManager AM;
     
     public GameObject player;
     public PlayerMovement pm;
@@ -22,12 +23,13 @@ public class LevelManagement : MonoBehaviour
 
         Manager = GameObject.Find("player");
         GM = Manager.GetComponent<GameMaster>();
+        AM = Manager.GetComponent<AbilityManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(GM.gotDash)
+        if(AM.gotDash)
         {
             PDash.enabled = true;
         }

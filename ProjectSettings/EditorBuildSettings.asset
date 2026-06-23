@@ -12,11 +12,14 @@ EditorBuildSettings:
     path: Assets/Scenes/DreamLvl2.unity
     guid: 68796b89ad4598746abb916e09eb75c9
   - enabled: 1
-    path: Assets/Scenes/DreamLvl1.unity
-    guid: ba8d4ce09c4b9ef41ad3641aca09dda6
-  - enabled: 1
     path: Assets/Scenes/DreamUpgrade.unity
     guid: 34f98a5f6d5f47d48aa2af8cf61e1144
+  - enabled: 1
+    path: Assets/Scenes/DreamLvl3.unity
+    guid: 97205722e13d83f4f8112448b88785fe
+  - enabled: 0
+    path: Assets/Scenes/DreamLvl1.unity
+    guid: ba8d4ce09c4b9ef41ad3641aca09dda6
   - enabled: 0
     path: Assets/Scenes/DreamTest 1.unity
     guid: dfef5ce92b242b042bb827636b286951

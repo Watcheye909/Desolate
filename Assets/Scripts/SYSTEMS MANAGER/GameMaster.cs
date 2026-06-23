@@ -14,6 +14,7 @@ public class GameMaster : MonoBehaviour
     public LeTimer timer;
     public GameObject HitMarker;
     public GameObject player;
+    public GameObject StartPoint;
     public GameObject endPortal;
     public bool startSearch;
     public AbilityManager AM;
@@ -32,6 +33,8 @@ public class GameMaster : MonoBehaviour
     */
     
     public bool gotDash;
+    public bool gotFloat;
+
     public bool gotDoubleJump;
     public bool gotHighJump;
     public bool gotSprintBoost;
@@ -39,13 +42,16 @@ public class GameMaster : MonoBehaviour
     [Header("Assigned Slot Keybindings")]
     public SlotButtons slotScript;
     public KeyCode dashSlotKey = KeyCode.None;
-    public KeyCode doubleJumpSlotKey = KeyCode.None;
+    public KeyCode floatSlotKey = KeyCode.None;
+    //public KeyCode doubleJumpSlotKey = KeyCode.None;
 
     //REFERENCES
     public UpgradeMenu UM;
     public PlayerMovement PM;
-    public DoubleJump doubleJumpScript;
     public PlayerDash dashScript;
+    public Hover floatScript;
+
+    public DoubleJump doubleJumpScript;
     private EnemyAI EA;
 
     
@@ -57,6 +63,7 @@ public class GameMaster : MonoBehaviour
     {
         
 
+        AM = GetComponent<AbilityManager>();
         timer = GameObject.FindGameObjectWithTag("GM").GetComponent<LeTimer>();
         startCheckPointPos = lastCheckPointPos;
         if (instance == null)
@@ -114,10 +121,21 @@ public class GameMaster : MonoBehaviour
         player = GameObject.Find("Player");
         PM = player.GetComponent<PlayerMovement>();
         UM.cam = GameObject.Find("Main Camera").GetComponent<PlayerCamera>();
+
+
+
+        //Ability References
+        dashScript = player.GetComponent<PlayerDash>();
+        floatScript = player.GetComponent<Hover>();
         
+        doubleJumpScript = player.GetComponent<DoubleJump>();
+        
+        
+        //SLOT ABILITY CHECK
+
+        //Dash
         if(gotDash)
         {
-            dashScript = player.GetComponent<PlayerDash>();
             dashScript.enabled = true;
             
             // Restore assigned slot key if it was set
@@ -126,19 +144,43 @@ public class GameMaster : MonoBehaviour
                 dashScript.dashKey = dashSlotKey;
             }
         }
-        else 
+        else
+        {
             dashScript.enabled = false;
+        }
 
 
+        //Float
+        if(gotFloat)
+        {
+            floatScript.enabled = true;
+            
+            // Restore assigned slot key if it was set
+            if(floatSlotKey != KeyCode.None)
+            {
+                floatScript.floatKey = floatSlotKey;
+            }
+        }
+        else
+        {
+            floatScript.enabled = false;
+        }
+
+
+
+
+        //OTHER ABILITY
         if(gotDoubleJump)
         {
-            doubleJumpScript = player.GetComponent<DoubleJump>();
             doubleJumpScript.enabled = true;
         }
         else
         {
             doubleJumpScript.enabled = false;
         }
+
+
+
 
         if(gotHighJump)
         {
@@ -166,7 +208,7 @@ public class GameMaster : MonoBehaviour
     // This method is called every time a new scene is loaded
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        playerSearch();
+        AM.playerSearch();
         Debug.Log($"Scene Loaded: {scene.name} (Build Index: {scene.buildIndex})");
         Debug.Log($"Load Mode: {mode}");
         

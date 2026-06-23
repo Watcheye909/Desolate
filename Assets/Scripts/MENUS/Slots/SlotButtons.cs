@@ -67,6 +67,7 @@ public class SlotButtons : MonoBehaviour
         }
 
         pendingPower.AssignSlotKey(key);
+        slotScript.ClearSlot();
         slotScript.AssignState(ConvertPowerToSlotState(pendingPower));
         pendingPower.ApplyPendingUpgrade();
         pendingPower = null;
@@ -79,16 +80,18 @@ public class SlotButtons : MonoBehaviour
 
     private SlotScript.slotState ConvertPowerToSlotState(PowerUps power)
     {
-        if (power == null)
+        if(power == null)
             return SlotScript.slotState.None;
 
-        if (power.dashUpgrade)
+        if(power.dashUpgrade)
             return SlotScript.slotState.dash;
-        if (power.doubleJumpUpgrade)
+        if(power.floatUpgrade)
+            return SlotScript.slotState.peachFloat;
+        if(power.doubleJumpUpgrade)
             return SlotScript.slotState.doubleJump;
-        if (power.highjumpUpgrade)
+        if(power.highjumpUpgrade)
             return SlotScript.slotState.highJump;
-        if (power.sprintUpgrade)
+        if(power.sprintUpgrade)
             return SlotScript.slotState.sprintBoost;
 
         return SlotScript.slotState.None;

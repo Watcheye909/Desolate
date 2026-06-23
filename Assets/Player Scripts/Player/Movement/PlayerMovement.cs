@@ -286,7 +286,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         // check if player should lose momentum based on changes in speed [new system]
-        if ((rb.velocity.magnitude <= moveSpeed/2 && grounded) || horizontalInput == 0 && verticalInput == 0 && grounded)
+        if ((rb.velocity.magnitude <= moveSpeed/2 && grounded) && moveSpeed > sprintSpeed|| horizontalInput == 0 && verticalInput == 0 && grounded)
             playerStop = true;
         else
             playerStop = false;
@@ -311,6 +311,11 @@ public class PlayerMovement : MonoBehaviour
             moveSpeed = walkSpeed;
 
         else if(lastDesiredSpeed == walkSpeed && desiredSpeed == sprintSpeed)
+        {
+            moveSpeed = desiredSpeed;
+        }
+
+        else if(lastDesiredSpeed == sprintSpeed && desiredSpeed == walkSpeed)
         {
             moveSpeed = desiredSpeed;
         }
