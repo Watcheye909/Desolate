@@ -55,10 +55,9 @@ public class Hover : MonoBehaviour
             floatCoolTime -= Time.deltaTime;
 
         
-        /*
-        if(!pm.grounded && floatCoolTime <= 0)
+        
+        if(floatCoolTime <= 0 && !canFloat && !floating)
             canFloat = true;
-        */
 
 
         if(Input.GetKeyDown(floatKey))
@@ -69,7 +68,7 @@ public class Hover : MonoBehaviour
             }
         }
 
-        if(Input.GetKeyUp(floatKey))
+        if(Input.GetKeyUp(floatKey) && floating)
             ResetLevitate();
 
         if(floating)
@@ -127,8 +126,6 @@ public class Hover : MonoBehaviour
         
         //floatTime = floatDuration;
         floatCoolTime = floatCooldown;
-
-        canFloat = true;
         //fxReady = true;
 
     }

@@ -70,6 +70,11 @@ public class AbilityManager : MonoBehaviour
     public bool gotHighJump;
     public bool gotSprintBoost;
 
+    [Header("Game UI References")]
+    public SlotAnimation slotAni1;
+    public SlotAnimation slotAni2;
+    public SlotAnimation slotAni3;
+
 
     // Start is called before the first frame update
     void Awake()
@@ -86,9 +91,9 @@ public class AbilityManager : MonoBehaviour
         Slot2 = GameObject.Find("SlotButton(2)");
         Slot3 = GameObject.Find("SlotButton(3)");
 
-        SlotScript1 = GameObject.Find("SlotButton(1)").GetComponent<SlotScript>();
-        SlotScript2 = GameObject.Find("SlotButton(2)").GetComponent<SlotScript>();
-        SlotScript3 = GameObject.Find("SlotButton(3)").GetComponent<SlotScript>();
+        SlotScript1 = Slot1.GetComponent<SlotScript>();
+        SlotScript2 = Slot2.GetComponent<SlotScript>();
+        SlotScript3 = Slot3.GetComponent<SlotScript>();
 
 
 
@@ -111,6 +116,15 @@ public class AbilityManager : MonoBehaviour
 
     public void playerSearch()
     {
+        //GameUI Slot Related
+        slotAni1 = GameObject.Find("Slot 1").GetComponent<SlotAnimation>();
+        slotAni2 = GameObject.Find("Slot 2").GetComponent<SlotAnimation>();
+        slotAni3 = GameObject.Find("Slot 3").GetComponent<SlotAnimation>();
+
+        AssignSlotAnimation(slotAni1);
+        AssignSlotAnimation(slotAni2);
+        AssignSlotAnimation(slotAni3);
+
         if(GM == null)
             GM = GameObject.Find("GameMaster").GetComponent<GameMaster>();
 
@@ -212,5 +226,20 @@ public class AbilityManager : MonoBehaviour
             floatSlotKey = KeyCode.None;
             gotFloat = false;
         } 
+    }
+
+    private void AssignSlotAnimation(SlotAnimation slotAni)
+    {
+        if (slotAni == null)
+            return;
+
+        if (slotAni.isSlot1)
+            slotAni.currentSlot = SlotScript1;
+        else if (slotAni.isSlot2)
+            slotAni.currentSlot = SlotScript2;
+        else if (slotAni.isSlot3)
+            slotAni.currentSlot = SlotScript3;
+        else
+            slotAni.currentSlot = null;
     }
 }

@@ -149,13 +149,34 @@ public class PowerUps : MonoBehaviour
         switch (randomIndex)
         {
             case 0:
-                dashUpgrade = true;
+                if(AM.gotDash)
+                {
+                    RandomizeUpgrade();
+                }
+                else
+                {
+                    dashUpgrade = true;
+                }
                 break;
             case 1:
-                floatUpgrade = true;
+                if(AM.gotFloat)
+                {
+                    RandomizeUpgrade();
+                }
+                else
+                {
+                    floatUpgrade = true;
+                }
                 break;
             case 2:
-                doubleJumpUpgrade = true;
+                if(AM.gotDoubleJump)
+                {
+                    RandomizeUpgrade();
+                }
+                else
+                {    
+                    doubleJumpUpgrade = true;
+                }
                 break;
             case 3:
                 highjumpUpgrade = true;

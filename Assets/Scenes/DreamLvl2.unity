@@ -12514,6 +12514,7 @@ GameObject:
   - component: {fileID: 395352874}
   - component: {fileID: 395352873}
   - component: {fileID: 395352875}
+  - component: {fileID: 395352876}
   m_Layer: 15
   m_Name: Slot 2
   m_TagString: Untagged
@@ -12599,6 +12600,25 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &395352876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 395352871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 264c8a7ed9851ec44a432d4b0bf6165c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ani: {fileID: 395352875}
+  isSlot1: 0
+  isSlot2: 1
+  isSlot3: 0
+  currentSlot: {fileID: 0}
+  dashScript: {fileID: 0}
+  floatScript: {fileID: 0}
 --- !u!1 &396875111
 GameObject:
   m_ObjectHideFlags: 0
@@ -14113,6 +14133,7 @@ GameObject:
   - component: {fileID: 665944308}
   - component: {fileID: 665944307}
   - component: {fileID: 665944306}
+  - component: {fileID: 665944309}
   m_Layer: 15
   m_Name: Slot 1
   m_TagString: Untagged
@@ -14198,6 +14219,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 665944304}
   m_CullTransparentMesh: 1
+--- !u!114 &665944309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 665944304}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 264c8a7ed9851ec44a432d4b0bf6165c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ani: {fileID: 665944306}
+  isSlot1: 1
+  isSlot2: 0
+  isSlot3: 0
+  currentSlot: {fileID: 0}
+  dashScript: {fileID: 0}
+  floatScript: {fileID: 0}
 --- !u!1 &670995953
 GameObject:
   m_ObjectHideFlags: 0
@@ -48771,13 +48811,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   checkpointActivated: 0
   playerDied: 0
-  timer: {fileID: 0}
   HitMarker: {fileID: 0}
   player: {fileID: 0}
   StartPoint: {fileID: 0}
   endPortal: {fileID: 0}
   startSearch: 0
+  UM: {fileID: 0}
   AM: {fileID: 0}
+  timer: {fileID: 0}
   startCheckPointPos: {x: 0, y: 0, z: 0}
   lastCheckPointPos: {x: 0, y: 1.44, z: 0}
   gotDash: 0
@@ -48788,11 +48829,13 @@ MonoBehaviour:
   slotScript: {fileID: 0}
   dashSlotKey: 0
   floatSlotKey: 0
-  UM: {fileID: 0}
   PM: {fileID: 0}
   dashScript: {fileID: 0}
   floatScript: {fileID: 0}
   doubleJumpScript: {fileID: 0}
+  slotAni1: {fileID: 0}
+  slotAni2: {fileID: 0}
+  slotAni3: {fileID: 0}
   returnKey: 9
 --- !u!4 &1401575778
 Transform:
@@ -48870,6 +48913,9 @@ MonoBehaviour:
   gotDoubleJump: 0
   gotHighJump: 0
   gotSprintBoost: 0
+  slotAni1: {fileID: 0}
+  slotAni2: {fileID: 0}
+  slotAni3: {fileID: 0}
 --- !u!1 &1404046392
 GameObject:
   m_ObjectHideFlags: 0
@@ -67023,6 +67069,7 @@ GameObject:
   - component: {fileID: 1759983303}
   - component: {fileID: 1759983302}
   - component: {fileID: 1759983301}
+  - component: {fileID: 1759983304}
   m_Layer: 15
   m_Name: Slot 3
   m_TagString: Untagged
@@ -67108,6 +67155,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1759983299}
   m_CullTransparentMesh: 1
+--- !u!114 &1759983304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1759983299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 264c8a7ed9851ec44a432d4b0bf6165c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ani: {fileID: 1759983301}
+  isSlot1: 0
+  isSlot2: 0
+  isSlot3: 1
+  currentSlot: {fileID: 0}
+  dashScript: {fileID: 0}
+  floatScript: {fileID: 0}
 --- !u!1001 &1767664568
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -68354,7 +68420,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1946149471}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4675fb32548f53149a8453d12864f764, type: 3}
   m_Name: 
@@ -69410,7 +69476,7 @@ Transform:
   m_GameObject: {fileID: 2078795276}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 44.15757, y: -7.3374147, z: 24.97955}
+  m_LocalPosition: {x: 44.15757, y: -48.087414, z: 24.97955}
   m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_ConstrainProportionsScale: 1
   m_Children:

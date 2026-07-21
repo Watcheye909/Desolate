@@ -11,13 +11,16 @@ public class GameMaster : MonoBehaviour
 
     [Header("References")]
     private static GameMaster instance;
-    public LeTimer timer;
     public GameObject HitMarker;
     public GameObject player;
     public GameObject StartPoint;
     public GameObject endPortal;
     public bool startSearch;
+    
+    [Header("Script References")]
+    public UpgradeMenu UM;
     public AbilityManager AM;
+    public LeTimer timer;
 
 
     [Header("Scene Positions")]
@@ -32,6 +35,7 @@ public class GameMaster : MonoBehaviour
     script keep track of which powerups the player obtained in older levels.
     */
     
+    [Header("Ability Checks")]
     public bool gotDash;
     public bool gotFloat;
 
@@ -46,25 +50,74 @@ public class GameMaster : MonoBehaviour
     //public KeyCode doubleJumpSlotKey = KeyCode.None;
 
     //REFERENCES
-    public UpgradeMenu UM;
+    [Header("Player Script References")]
     public PlayerMovement PM;
     public PlayerDash dashScript;
     public Hover floatScript;
-
     public DoubleJump doubleJumpScript;
-    private EnemyAI EA;
 
-    
-    //KEYCODES
+    [Header("Game UI References")]
+    public SlotAnimation slotAni1;
+    public SlotAnimation slotAni2;
+    public SlotAnimation slotAni3;
+
+
+    //private EnemyAI EA;
+
+    [Header("KeyCode")]
     public KeyCode returnKey;
 
 
     void Awake()
     {
-        
+        /* =========THIS IS AN UNFINISHED SCRIPT NEED FOR SLOT ANIMATIONS===========
+        //GameUI Slot Related
+        slotAni1 = GameObject.Find("Slot 1").GetComponent<SlotAnimation>();
+        slotAni2 = GameObject.Find("Slot 2").GetComponent<SlotAnimation>();
+        slotAni3 = GameObject.Find("Slot 3").GetComponent<SlotAnimation>();
 
+        //slot1
+        if(slotAni1.isSlot1)
+            slotAni1.currentSlot = GameObject.Find("SlotButton(1)").GetComponent<SlotScript>();
+
+        else if(slotAni1.isSlot2)
+            slotAni1.currentSlot = GameObject.Find("SlotButton(2)").GetComponent<SlotScript>();
+
+        else if(slotAni1.isSlot3)
+            slotAni1.currentSlot = GameObject.Find("SlotButton(3)").GetComponent<SlotScript>();
+
+
+
+        //slot2
+        if(slotAni2.isSlot1)
+            slotAni1.currentSlot = GameObject.Find("SlotButton(1)").GetComponent<SlotScript>();
+
+        else if(slotAni2.isSlot2)
+            slotAni1.currentSlot = GameObject.Find("SlotButton(2)").GetComponent<SlotScript>();
+
+        else if(slotAni2.isSlot3)
+            slotAni1.currentSlot = GameObject.Find("SlotButton(3)").GetComponent<SlotScript>();
+
+
+
+        //slot3
+        if(slotAni3.isSlot1)
+            slotAni1.currentSlot = GameObject.Find("SlotButton(1)").GetComponent<SlotScript>();
+
+        else if(slotAni3.isSlot2)
+            slotAni1.currentSlot = GameObject.Find("SlotButton(2)").GetComponent<SlotScript>();
+
+        else if(slotAni3.isSlot3)
+            slotAni1.currentSlot = GameObject.Find("SlotButton(3)").GetComponent<SlotScript>();
+        */
+
+
+        //Scripts
         AM = GetComponent<AbilityManager>();
         timer = GameObject.FindGameObjectWithTag("GM").GetComponent<LeTimer>();
+        
+        
+        //Position Setting
         startCheckPointPos = lastCheckPointPos;
         if (instance == null)
         {
@@ -118,6 +171,8 @@ public class GameMaster : MonoBehaviour
 
     public void playerSearch()
     {
+        //-----------Script/Object Searches----------
+
         player = GameObject.Find("Player");
         PM = player.GetComponent<PlayerMovement>();
         UM.cam = GameObject.Find("Main Camera").GetComponent<PlayerCamera>();
@@ -131,7 +186,7 @@ public class GameMaster : MonoBehaviour
         doubleJumpScript = player.GetComponent<DoubleJump>();
         
         
-        //SLOT ABILITY CHECK
+        //------SLOT ABILITY CHECK--------
 
         //Dash
         if(gotDash)
